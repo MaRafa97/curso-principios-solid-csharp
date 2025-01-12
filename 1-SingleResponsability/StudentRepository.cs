@@ -19,12 +19,14 @@ namespace SingleResponsability
             storage.Add(new Student(3, "José Molina", new List<double>() { 2, 3 }));
         }
 
-        public IEnumerable<Student> GetAll() 
+        public IEnumerable<Student> GetAll()
         {
             return storage.GetAll();
         }
 
-        public void Export() 
+        //No deberia encargarse de la exportacion de datos, esta clase solo deberia manejar los datos
+        // CRUD, esto podria ir dentro de una clase llamada ExportHelper o una clase dedicada a hacer esto
+        public void Export()
         {
             IEnumerable<Student> students = this.GetAll();
             string csv = String.Join(",", students.Select(x => x.ToString()).ToArray());
